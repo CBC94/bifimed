@@ -14,6 +14,7 @@ def scrape_bifimed(principio_activo):
         session = requests.Session()
         response = session.post(url, data=payload, headers=headers, verify=False)
         soup = BeautifulSoup(response.text, "html.parser")
+	print(response.text[:1000])  # Imprime los primeros 1000 caracteres del HTML
         tabla = soup.find("table")
         if not tabla:
             return {"resultados": []}
