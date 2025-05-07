@@ -12,7 +12,7 @@ def scrape_bifimed(principio_activo):
         }
 
         session = requests.Session()
-        response = session.post(url, data=payload, headers=headers)
+        response = session.post(url, data=payload, headers=headers, verify=False)
         soup = BeautifulSoup(response.text, "html.parser")
         tabla = soup.find("table")
         if not tabla:
@@ -51,7 +51,7 @@ def scrape_bifimed(principio_activo):
 
 def scrape_detalle(url, headers, session):
     try:
-        response = session.get(url, headers=headers)
+        response = session.get(url, headers=headers, verify=False)
         soup = BeautifulSoup(response.text, "html.parser")
 
         def buscar_texto(selector):
